@@ -2,7 +2,8 @@
 # creates window, pulls from first camera it finds.
 # displays feed from camera
 
-# direct copypasta from https://gist.github.com/burnto/1266515
+# lots of slightly-tweaked copypasta; refer to the readme.
+# may be re-implemented in the future in a more sophisticated fashion.
 
 import cv
 
@@ -43,7 +44,7 @@ def repeat():
 
     if motion:
         cv.Smooth(frame, frame, cv.CV_GAUSSIAN, 19, 0)                                # blur to reduce false positives
-        cv.RunningAvg(frame, running_average_image, 0.420, None)                      # get the running average
+        cv.RunningAvg(frame, running_average_image, 0.320, None)                      # get the running average
         cv.ConvertScale(running_average_image, running_average_in_color, 1.0, 0.0)    # convert running average to color
         cv.AbsDiff(frame, running_average_in_color, difference)                       # store the absolute difference in [difference]
 
@@ -53,8 +54,8 @@ def repeat():
 
         cv.CvtColor(difference, frame_grayscale, cv.CV_RGB2GRAY)
         cv.Threshold(frame_grayscale, frame_grayscale, 70, 255, cv.CV_THRESH_BINARY)
-        cv.Dilate(frame_grayscale, frame_grayscale, None, 18)
-        cv.Erode(frame_grayscale, frame_grayscale, None, 10)
+        cv.Dilate(frame_grayscale, frame_grayscale, None, 9)
+        cv.Erode(frame_grayscale, frame_grayscale, None, 5)
 
         # begin snippet
 

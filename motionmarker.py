@@ -2,6 +2,9 @@
 
 import cv
 
+# This is the working script which draws red boxes and paints a target when given a feed.
+# I didn't write this; it came from: [ http://stackoverflow.com/questions/3374828/how-do-i-track-motion-using-opencv-in-python ]
+
 class Target:
 
     def __init__(self):
